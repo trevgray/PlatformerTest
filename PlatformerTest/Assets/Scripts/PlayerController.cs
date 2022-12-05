@@ -23,14 +23,13 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.position += (new Vector3(Input.GetAxisRaw("Horizontal") * runSpeed * Time.deltaTime, 0, 0));
         if (Input.GetKey(KeyCode.Space) == true && isOnGround == true)
         {
-            playerRigidbody.velocity += new Vector2(0.0f,1.0f) * jumpStrength; 
+            playerRigidbody.velocity = new Vector2(0.0f,1.0f) * jumpStrength; 
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) { 
-        if (collision.gameObject.tag == "Ground") { 
+        if (collision.gameObject.tag == "Ground" && (playerRigidbody.velocity.y == 0.0f)) { 
             isOnGround = true;
-            //rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
         } 
     }
 
