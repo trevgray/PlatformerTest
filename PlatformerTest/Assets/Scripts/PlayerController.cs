@@ -5,22 +5,37 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float runSpeed = 40.0f;
-    private float horizontalAxis = 0.0f;
+    private Rigidbody2D rigidbody2D;
+    public float runSpeed = 1.0f;
+    public float jumpStrength = 1.0f;
+
+    private LayerMask ground_layers;
+    private bool isOnGround = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalAxis = Input.GetAxisRaw("Horizontal") * runSpeed;
+        gameObject.transform.position += (new Vector3(Input.GetAxisRaw("Horizontal") * runSpeed * Time.deltaTime, 0, 0));
+        if (Input.GetKey(KeyCode.Space) == true && isOnGround == true)
+        {
+            rigidbody2D.velocity += new Vector2(0.0f,1.0f) * jumpStrength; 
+        }
     }
 
-    private void FixedUpdate()
+    private void OnCollisionEnter2D(Collision2D collision) { 
+        if (collision.gameObject.tag == "Ground") { 
+            isOnGround = true;
+            //rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
+        } 
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        gameObject.transform.position += (new Vector3(horizontalAxis * Time.deltaTime, 0, 0));
+        isOnGround = false;
     }
 }
