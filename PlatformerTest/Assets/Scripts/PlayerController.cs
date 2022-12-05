@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D playerRigidbody;
     public float runSpeed = 1.0f;
     public float jumpStrength = 1.0f;
 
     private LayerMask ground_layers;
-    private bool isOnGround = false;
+    private bool isOnGround = true;
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.position += (new Vector3(Input.GetAxisRaw("Horizontal") * runSpeed * Time.deltaTime, 0, 0));
         if (Input.GetKey(KeyCode.Space) == true && isOnGround == true)
         {
-            rigidbody2D.velocity += new Vector2(0.0f,1.0f) * jumpStrength; 
+            playerRigidbody.velocity += new Vector2(0.0f,1.0f) * jumpStrength; 
         }
     }
 
