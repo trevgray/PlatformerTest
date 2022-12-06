@@ -8,6 +8,7 @@ using System;
 public class HighScoreManager : MonoBehaviour
 {
     public List<float> scores;
+
     private string filename = "Highscore.txt";
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,7 @@ public class HighScoreManager : MonoBehaviour
         string[] fileStrings = File.ReadAllLines(Application.dataPath + "/" + filename);
         foreach (string s in fileStrings)
         {
-            scores.Add(float.Parse(s));
+           scores.Add(float.Parse(s));
         }
     }
 

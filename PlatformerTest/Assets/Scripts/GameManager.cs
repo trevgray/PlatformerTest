@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text HUDTimerUI;
     public TMP_Text levelCompleteUI;
+    public TMP_Text gameOverUI;
     public HighScoreManager highScoreManager;
+
+    public PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,12 +32,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    public void ToggleDeathScreen()
+    {
+        StopTimer();
+        playerController.isAlive = false;
+        gameOverUI.gameObject.SetActive(true);
+    }
 
     public void StopTimer()
     {
         timerOn = false;
-        EndLevelScreen();
     }
 
     public void SwitchToTitleScreen()
@@ -44,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void EndLevelScreen()
     {
+        playerController.isAlive = false;
         HUDTimerUI.gameObject.SetActive(false);
 
         TMP_Text YourTime = null;

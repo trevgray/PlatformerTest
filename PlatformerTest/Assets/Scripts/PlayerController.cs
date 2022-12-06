@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float runSpeed = 1.0f;
     public float jumpStrength = 1.0f;
 
-    private LayerMask ground_layers;
+    public bool isAlive = true;
     private bool isOnGround = true;
     // Start is called before the first frame update
     void Start()
@@ -20,10 +20,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position += (new Vector3(Input.GetAxisRaw("Horizontal") * runSpeed * Time.deltaTime, 0, 0));
-        if (Input.GetKey(KeyCode.Space) == true && isOnGround == true)
+        if (isAlive == true)
         {
-            playerRigidbody.velocity = new Vector2(0.0f,1.0f) * jumpStrength; 
+            gameObject.transform.position += (new Vector3(Input.GetAxisRaw("Horizontal") * runSpeed * Time.deltaTime, 0, 0));
+            if (Input.GetKey(KeyCode.Space) == true && isOnGround == true)
+            {
+                playerRigidbody.velocity = new Vector2(0.0f, 1.0f) * jumpStrength;
+            }
         }
     }
 

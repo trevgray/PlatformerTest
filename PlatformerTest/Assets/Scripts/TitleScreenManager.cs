@@ -27,8 +27,18 @@ public class TitleScreenManager : MonoBehaviour
             {
                 textComponent.text = highScoreManager.scores[textIterator].ToString() + "s";
                 textIterator++;
+                if (textIterator == 3)
+                {
+                    break;
+                }
             }
         }
         highScoreScreen.gameObject.SetActive(true);
+    }
+
+    public void TitleScreen()
+    {
+        titleScreen.gameObject.SetActive(true);
+        highScoreScreen.gameObject.SetActive(false);
     }
 }
