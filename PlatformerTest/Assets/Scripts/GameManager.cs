@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void EndLevelScreen()
     {
+        StopTimer();
         playerController.isAlive = false;
         HUDTimerUI.gameObject.SetActive(false);
 

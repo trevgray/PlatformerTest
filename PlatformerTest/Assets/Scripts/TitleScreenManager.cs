@@ -16,6 +16,11 @@ public class TitleScreenManager : MonoBehaviour
         SceneManager.LoadScene("Assets/Scenes/Level1.unity");
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     public void Highscores()
     {
         titleScreen.gameObject.SetActive(false);

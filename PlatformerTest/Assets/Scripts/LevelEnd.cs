@@ -16,7 +16,6 @@ public class LevelEnd : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            gameManager.StopTimer();
             gameManager.EndLevelScreen();
         }
     }
