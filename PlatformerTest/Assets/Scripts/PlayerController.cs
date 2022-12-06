@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float jumpStrength = 1.0f;
 
     public bool isAlive = true;
-    private bool isOnGround = true;
+    private bool isOnGround = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) { 
+    private void OnCollisionStay2D(Collision2D collision) { 
         if (collision.gameObject.tag == "Ground" && (playerRigidbody.velocity.y == 0.0f)) { 
             isOnGround = true;
         } 
